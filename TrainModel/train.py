@@ -10,10 +10,10 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-# Directory paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Directory of the current script
-MODEL_DIR = os.path.join(BASE_DIR, '../model')
-DATA_DIR = os.path.join(BASE_DIR, '../data/your_audio_files_here')
+# Define directory paths
+BASE_DIR = os.path.dirname(__file__)  # Get the directory where the script is located
+MODEL_DIR = os.path.join(BASE_DIR, '..', 'models')  # Move one directory up to reach 'models'
+DATA_DIR = os.path.join(BASE_DIR, '..', 'Data')  # Move one directory up to reach 'Data'
 
 # Create model directory if it doesn't exist
 os.makedirs(MODEL_DIR, exist_ok=True)
@@ -74,7 +74,7 @@ ensemble_accuracy = accuracy_score(y_test, ensemble_model.predict(X_test_scaled)
 print(f"Ensemble Model Accuracy: {ensemble_accuracy * 100:.2f}%")
 
 # Save the model, scaler, and label encoder
-joblib.dump(ensemble_model, os.path.join(MODEL_DIR, "ensemble_model.joblib"))
-joblib.dump(scaler, os.path.join(MODEL_DIR, "scaler.joblib"))
-joblib.dump(label_encoder, os.path.join(MODEL_DIR, "label_encoder.joblib"))
+joblib.dump(ensemble_model, os.path.join(MODEL_DIR, 'ensemble_model.joblib'))
+joblib.dump(scaler, os.path.join(MODEL_DIR, 'scaler.joblib'))
+joblib.dump(label_encoder, os.path.join(MODEL_DIR, 'label_encoder.joblib'))
 print(f"Model, scaler, and label encoder saved in {MODEL_DIR}")
