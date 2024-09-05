@@ -2,13 +2,13 @@ import streamlit as st
 import joblib
 import numpy as np
 import librosa
-import os
+from pathlib import Path
 
 # Define the relative paths to the model, scaler, and label encoder
-BASE_DIR = os.path.dirname(__file__)  # Get the directory where the script is located
-MODEL_PATH = os.path.join(BASE_DIR, 'Models', 'ensemble_model.joblib')
-SCALER_PATH = os.path.join(BASE_DIR, 'Models', 'scaler.joblib')
-LABEL_ENCODER_PATH = os.path.join(BASE_DIR, 'Models', 'label_encoder.joblib')
+BASE_DIR = Path(__file__).resolve().parent  # Get the directory where the script is located
+MODEL_PATH = BASE_DIR / 'Models' / 'ensemble_model.joblib'
+SCALER_PATH = BASE_DIR / 'Models' / 'scaler.joblib'
+LABEL_ENCODER_PATH = BASE_DIR / 'Models' / 'label_encoder.joblib'
 
 # Load the model, scaler, and label encoder
 @st.cache_resource  # Caches the loaded model to improve performance
@@ -53,3 +53,4 @@ if uploaded_file is not None:
     # Determine the genre with the highest probability
     predicted_genre = label_encoder.classes_[np.argmax(predicted_probs)]
     st.write(f"\nPredicted Genre: {predicted_genre}")
+
