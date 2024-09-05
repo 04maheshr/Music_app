@@ -11,8 +11,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # Directory paths
-MODEL_DIR = r"C:\Users\nived\OneDrive\Desktop\Mahesh\Music_App\Models"
-DATA_DIR = r"C:\Users\nived\OneDrive\Desktop\genreswav"  # Update with your actual data directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Directory of the current script
+MODEL_DIR = os.path.join(BASE_DIR, '../model')
+DATA_DIR = os.path.join(BASE_DIR, '../data/your_audio_files_here')
 
 # Create model directory if it doesn't exist
 os.makedirs(MODEL_DIR, exist_ok=True)
